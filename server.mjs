@@ -5,6 +5,7 @@ import globalErr from "./middleware/globalErr.mjs";
 import log from "./middleware/loggingMiddleware.mjs";
 import connectDB from "./db/conn.mjs";
 import mammalRoutes from "./routes/mammalRoutes.mjs";
+import avianRoutes from "./routes/avainRoutes.mjs";
 
 // Setups
 dotenv.config();
@@ -20,6 +21,7 @@ app.use(log);
 
 // Routes
 app.use("/api/mammal", mammalRoutes);
+app.use("/api/avian", avianRoutes);
 
 // Err Handling Middleware
 app.use(globalErr);

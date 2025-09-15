@@ -58,7 +58,7 @@ router
       let updatedMammal = await Mammal.findByIdAndUpdate(
         req.params.id,
         req.body,
-        { new: true } // Option to allow newly updated object to be sent back
+        { new: true } 
       );
 
       res.json(updatedMammal);
