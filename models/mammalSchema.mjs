@@ -32,7 +32,7 @@ mammalSchema.statics.inHabitat = function (habitat) {
 };
 
 // Instance method - used on an INSTANCE of the collection
-mammalSchema.methods.getOthersInHab = function (cb) {
+mammalSchema.methods.getOthersInHab = function () {
   return mongoose.model("Mammal").find({ habitat: this.habitat });
 };
 
