@@ -8,4 +8,6 @@ const avianSchema = new mongoose.Schema({
   maxElevation: { type: Number, min: 0, required: true },
 });
 
+avianSchema.index({breed: 1});
+
 export default mongoose.model("Avian", avianSchema);

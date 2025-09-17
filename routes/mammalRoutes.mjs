@@ -1,6 +1,19 @@
 import express from "express";
 import Mammal from "../models/mammalSchema.mjs";
 const router = express.Router();
+import { mammals } from "../data/data.mjs";
+
+router.get("/seed", async (req, res) => {
+  try {
+    await Mammal.deleteMany({}); // Optional just to clear out database before reloading new data
+
+    await Mammal.insertMany(mammals);
+
+    res.send("Data Successfully seeded");
+  } catch (err) {
+    console.error(err.msg);
+  }
+});
 
 // Get animals by habitat
 router.get("/habitat/:hab", async (req, res) => {
@@ -58,7 +71,7 @@ router
       let updatedMammal = await Mammal.findByIdAndUpdate(
         req.params.id,
         req.body,
-        { new: true } 
+        { new: true }
       );
 
       res.json(updatedMammal);

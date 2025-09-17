@@ -1,7 +1,20 @@
 import express from "express";
 import Avian from "../models/avianSchema.mjs";
+import { avians } from "../data/data.mjs";
 
 const router = express.Router();
+
+router.get("/seed", async (req, res) => {
+  try {
+    await Avian.deleteMany({}); // OPtional step.
+
+    await Avian.insertMany(avians);
+
+    res.send("Success: Database seeded");
+  } catch (err) {
+    console.error(err.message);
+  }
+});
 
 // Create
 router
@@ -25,7 +38,6 @@ router
   .put(async (req, res) => {
     let updateAvian = await Avian.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
-      
     });
 
     res.json(updateAvian);
